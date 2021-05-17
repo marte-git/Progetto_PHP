@@ -32,7 +32,7 @@
 				$_SESSION['bio'] = $row['bio'];
 				$_SESSION['img'] = $row['img'];
 				$_SESSION['dataLogin'] = time();
-				$_SESSION['acessoPermesso'] = 1000;
+				$_SESSION['accessoPermesso'] = 1000;
 				header('Location: inizio.php');
 				exit();
 			}else
