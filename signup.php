@@ -27,7 +27,6 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 				exit();
 			}
 			
-			
 			if(isset($_POST['invio'])) {
 				if(($_POST['nome']) && ($_POST['cognome']) && ($_POST['userName'])
 				  && ($_POST['password']) && ($_POST['email']) && ($_POST['dataNascita']) && $_POST['sesso']) {
@@ -53,6 +52,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 			//CHIUSURA CONNESSIONE
 			$connection->close();		
 		?>
+		
+		<p>
+			<em>(*) Campi obbligatori</em>
+		</p>
 		
 		<form action = "signup.php" method = "POST">
 			<p> Nome*:
@@ -101,5 +104,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 			<p>
 				<input type = "submit" name = "invio" value = "Registrati">
 			</p>
+			
+			<p>
+				<input type = "reset" name = "reset" value = "Reset">
+			</p>
+		</form>
+		<p> Hai gi&agrave; un account? <a href = "login.php"> Accedi. </a>
 	</body>
 </html>
