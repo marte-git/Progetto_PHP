@@ -30,6 +30,7 @@
 				$_SESSION['dataNascita'] = $row['dataNascita'];
 				$_SESSION['professione'] = $row['professione'];
 				$_SESSION['bio'] = $row['bio'];
+				$_SESSION['spesaFinora'] = $row['sommeSpese'];
 				$_SESSION['img'] = $row['img'];
 				$_SESSION['dataLogin'] = time();
 				$_SESSION['accessoPermesso'] = 1000;
