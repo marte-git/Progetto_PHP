@@ -4,10 +4,12 @@
 	$post_table_name = "Posts";
 	$prodotti_table_name = "Prodotti";
 	
+	//TENTATIVO DI CONNESSIONE
 	$connection = new mysqli("localhost", "cesio", "cesio", $db_name);
 	
-	if(mysqli_connect_errno()){
-		printf("Errore di connessione al database: %s", mysqli_connect_error($connection));
+	//CONTROLLO CONNESSIONE
+	if(mysqli_connect_errno()) {
+		printf("Errore di connessione al db: %s\n", mysqli_connect_error($connection));
 		exit();
 	}
 ?>
