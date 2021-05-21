@@ -1,10 +1,11 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+require_once("stile_interno.php");
 
-require_once("./connessione.php");
+require_once("./connessione1.php");
 $msg = "";
-
+$_SESSION['eliminando'] = 0;
 //inserire uno stile interno
 
 session_start();
@@ -20,16 +21,25 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<title> Cesiogram </title>
-		<?php //echo $stileInterno; ?>
+		<?php echo $stileInterno; ?>
 	</head>
 	
 	<body>
-	<h3> Men&ugrave; </h3>
-		<?php require_once("menu_home.php") ?>
-		
+			<?php require_once("menu_home.php") ?>
 		<h1> Home </h1>
+		<?php 
+			require_once("carica_post.php");
+			require_once("elimina_post.php");
+		?>
+		<div class = "pubblica">
+			<form action = "carica_post.php" method = "post">
+				<textarea name = "testo" rows = "3" cols = "37"> Cosa hai fatto oggi? </textarea>
+				<br />
+				<input type = "submit" name = "invio" value = "Pubblica">
+			</form>
+		</div>
 		
-		<div>
+		<pre class = "post">
 			<?php	//creiamo la query per accedere a tutti i post
 				$sql = "SELECT * 
 				FROM $post_table_name
@@ -43,32 +53,38 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 				
 				
 				while($row = mysqli_fetch_array($resultQ)) {
-					$post = "<div><strong> \n";
-					$post.= $row['user']."\n</strong>";
-					$post.= "<br />\n";
-					$post.= "<span>\n";
-					$post.= $row['testo']."\n";
-					$post.= "</span>\n";
-					$post.= "<span>\n";
-					$post.= $row['file']."\n";
-					$post.= "</span>\n";
-					$post.= "</div>\n";
+					$post = "<table class = \"ogniPost\">\n<tbody>\n<tr>\n<td>\n<strong> \n";
+					if($row['user'] == $_SESSION['userName']) {
+						$post.= $row['user']."\n</strong><hr />\n</td>\n";
+						$post.= "<td><form action = \"elimina_post.php\" method = \"post\">";
+						$post.= "<input class = \"elimina\" type = \"submit\" name = \"eliminando\"";
+						$post.= "value =" .$row['postId'].">";
+						$post.= "</form>\n</td>\n</tr>\n";
+						$post.= "<tr>\n<td>\n";
+						$post.= "<p class = \"spostato\">".$row['testo']."</p>\n";						
+					}
+					else {
+						$post.= $row['user']."\n</strong><hr />\n</td>\n</tr>\n";
+						$post.= "<tr>\n<td>\n";
+						$post.= "<p class = \"spostato\">".$row['testo']."</p>\n";
+					}
+					$post.= "</td>\n</tr>\n</tbody>\n";
+					$post.= "</table>\n";
 					echo $post;
 				}
 			?>
-		</div>	
+		</pre>	
 		
-		<p> <strong>Username:</strong> <?php echo $_SESSION['userName'] ?> </p>
-		<p> <strong>Nome:</strong> <?php echo $_SESSION['nome'] ?> </p>
-		<p> <strong>Cognome:</strong> <?php echo $_SESSION['cognome'] ?> </p>
-		<p> <strong>Data di nascita:</strong> <?php echo $_SESSION['dataNascita'] ?> </p>
-		<p> <strong>Professione:</strong> <?php echo $_SESSION['professione'] ?> </p>
-		<p> <strong>Biografia:</strong> <?php echo $_SESSION['bio'] ?> </p>
-		<p> <strong>Ti sei collegato alle:</strong> <?php echo date ('g:i a', $_SESSION['dataLogin']) ?>
-		
-		
-		
-		
-		
+		<div class = "destra">
+			<h3> Il tuo profilo </h3>
+			<p> <strong>Username:</strong> <?php echo $_SESSION['userName'] ?> </p>
+			<p> <strong>Nome:</strong> <?php echo $_SESSION['nome'] ?> </p>
+			<p> <strong>Cognome:</strong> <?php echo $_SESSION['cognome'] ?> </p>
+			<p> <strong>Data di nascita:</strong> <?php echo $_SESSION['dataNascita'] ?> </p>
+			<p> <strong>Professione:</strong> <?php echo $_SESSION['professione'] ?> </p>
+			<p> <strong>Biografia:</strong> <?php echo $_SESSION['bio'] ?> </p>
+			<p> <strong>Ti sei collegato alle:</strong> <?php echo date ('g:i a', $_SESSION['dataLogin']) ?>
+			<p> <strong> Finora su Cesiogram hai speso: </strong><?php echo $_SESSION['spesaFinora'] ?> &euro; </p>
+		</div>
 	</body>
 </html>

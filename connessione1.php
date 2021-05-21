@@ -1,6 +1,7 @@
 <?php
 	$db_name = "cesioDB";
 	$user_table_name = "Users";
+	$post_table_name = "Posts";
 	$prodotti_table_name = "Prodotti";
 	
 	//TENTATIVO DI CONNESSIONE

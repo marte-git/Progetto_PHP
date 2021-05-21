@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 $msg = "";
 require_once("./connessione.php");
+require_once("style.php");
 
 	//verichiamo se siano stati inseriti correttamente i campi username e password
 	if(isset($_POST['invio'])) {
@@ -15,7 +16,7 @@ require_once("./connessione.php");
 					WHERE userName = \"{$_POST['userName']}\" AND password = \"{$_POST['password']}\"
 						  ";
 			if(!$resultQ = mysqli_query($connection, $sql)) {
-				$msg = "Questi dati non corrispondono a nessun account. Riprova o registrati.";
+				$msg = "Questi dati non corrispondono a nessun account.<br /> Riprova o registrati.";
 				exit();
 			}
 		
@@ -32,7 +33,6 @@ require_once("./connessione.php");
 				$_SESSION['email'] = $row['email'];
 				$_SESSION['professione'] = $row['professione'];
 				$_SESSION['bio'] = $row['bio'];
-				$_SESSION['img'] = $row['img'];
 				$_SESSION['spesaFinora'] = $row['sommeSpese'];
 				$_SESSION['accessoPermesso'] = 1000;
 				$_SESSION['dataLogin'] = time();
@@ -40,7 +40,7 @@ require_once("./connessione.php");
 				exit();
 			}
 			
-			else $msg = "<p> User e password inseriti non corrispondono a nessun account. Riprova o registrati. </p>";
+			else $msg = "<p> User e password inseriti non corrispondono a nessun account. <br /> Riprova o registrati. </p>";
 		}
 	}
 ?>
@@ -51,32 +51,47 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">	
 	
-	<head> <title> Login Cesiogram </title> </head>
+	<head> 
+		<title> Login Cesiogram </title> 
+		<?php echo $stile; ?>
+		
+	</head>
 	
 	<body>
-		<h2> Login </h2>
+	<span> <img src = "cesio.png" alt = "Cesiogram" title = "Cesiogram" width = "120" height = "120" />
+	<h1> Cesiogram </h1>
+	</span>
+		<h3> User Login </h3>
+		
+		<?php echo "<em>".$msg."</em>" ?>
+		
+		<form action = "<?php $_SERVER['PHP_SELF']?>" method = "post">
+			<table align="center"> 
+          <tr>
+            <td>
+              <img src="user.png" width="30" height="30" />
+            </td>
+            <td>
+              <input class="text" type="text" name="userName" value="username"> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="lock.png" width="30" height="30"/> 
+            </td>
+            <td>
+              <input class="text" type="password" name="password" value="password"> 
+            </td>
+          </tr>
+        </table>
+			
+			<input class = "bottone" type = "submit" name = "invio" value = "Accedi">
+			<input class = "bottone" type = "reset" name = "reset" value = "Reset">
+		</form>
 		
 		<p>
 			Non hai ancora un account? <a href = "signup.php"> Registrati </a>
 		</p>
-		
-		<hr />
-		
-		<?php echo $msg ?>
-		
-		<form action = "<?php $_SERVER['PHP_SELF']?>" method = "post">
-			<p> Username: 
-				<input type = "text" name = "userName" size = "30">
-			</p>
-			
-			<p> Password:
-				<input type = "password" name = "password" size = "30">
-			</p>
-			
-			<input type = "submit" name = "invio" value = "Accedi">
-			<input type = "reset" name = "reset" value = "Reset">
-		</form>
-		<hr />	
 	</body>
 </html>	
 			

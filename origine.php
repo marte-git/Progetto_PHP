@@ -1,5 +1,6 @@
 <?php		
 error_reporting(E_ALL &~E_NOTICE);	//
+require_once("style.php");
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
 <!DOCTYPE html
@@ -8,10 +9,13 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	
-	<head> <title> Creazione e popolamento DB </title> </head>
+	<head> 
+		<title> Creazione e popolamento DB </title> 
+		<?php echo $stile ?>
+		</head>
 	
 	<body> 
-		<h2> Creazione e popolamento di CesioDB </h2>
+		<h1> CesioDB </h1>
 	
 	
 		<?php 
@@ -26,16 +30,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 			
 			//CONTROLLO CONNESSIONE
 			if(mysqli_connect_errno()) {
-				printf("Errore di connessione al db: %s\n" ,  mysqli_connect_error());
+				printf("<h3>Errore di connessione al db: %s\n</h3>" ,  mysqli_connect_error());
 			}
 			
 			$queryCreazioneDB = "CREATE DATABASE $db_name"; 
 			
 			if($resultQ = mysqli_query($connection , $queryCreazioneDB)) {
-				printf("Database creato con successo!\n");
+				printf("<h3>Database creato con successo!\n</h3>");
 			}
 			else {
-				printf("Errore durante la creazione del database\n"); 
+				printf("<h3>Errore durante la creazione del database\n <h3>"); 
 			}
 			
 			//CHIUSURA CONNESSIONE
@@ -47,7 +51,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 			
 			//CONTROLLO CONNESSIONE
 			if(mysqli_connect_errno()) {
-				printf("Problemi di connessione al db: %s\n" ,  mysqli_connect_error());
+				printf("<h3>Problemi di connessione al db: %s\n</h3>" ,  mysqli_connect_error());
 				exit();
 			}
 			
@@ -63,17 +67,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 			$sqlQuery.= "sesso varchar(5), ";
 			$sqlQuery.= "professione varchar(30), ";
 			$sqlQuery.= "bio varchar(140), ";
-			$sqlQuery.= "img BLOB, ";
 			$sqlQuery.= "sommeSpese float ";
 			$sqlQuery.= ");";
 			
-			echo "<pre> $sqlQuery </pre>";
+			//echo "<pre>$sqlQuery/pre>";
 			
 			//VERIFICA CREAZIONE TABELLA USERS
 			if ($resultQ = mysqli_query($connection, $sqlQuery)) 
-				printf("Tabella Users creata con successo!\n");
+				printf("<h3>Tabella Users creata con successo!\n</h3>");
 			else {
-				printf("Creazione tabella Users fallita\n");
+				printf("<h3>Creazione tabella Users fallita\n </h3>");
 				exit();
 			}
 			
@@ -81,18 +84,17 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 			$sqlQuery = "CREATE TABLE if not exists $post_table_name (";
 			$sqlQuery.= "postId int NOT NULL auto_increment, primary key (postId), ";
 			$sqlQuery.= "user varchar(15) NOT NULL, foreign key (user) references $user_table_name(userName), ";
-			$sqlQuery.= "testo varchar(200) NOT NULL, ";
-			$sqlQuery.= "file BLOB ";
+			$sqlQuery.= "testo varchar(200) NOT NULL ";
 			//ora di pubblicazione (?)
 			$sqlQuery.= ");";
 			
-			echo "<pre> $sqlQuery </pre>";
+			//echo "<pre> $sqlQuery </pre>";
 			
 			//VERIFICA CREAZIONE TABELLA POSTS
 			if ($resultQ = mysqli_query($connection, $sqlQuery)) 
-				printf("Tabella Posts creata con successo!\n");
+				printf("<h3>Tabella Posts creata con successo!\n </h3>");
 			else {
-				printf("Creazione tabella Posts fallita\n");
+				printf("<h3>Creazione tabella Posts fallita\n </h3>");
 				exit();
 			}
 			
@@ -104,13 +106,13 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 			$sqlQuery.= "nome varchar(100) NOT NULL, ";
 			$sqlQuery.= "costo float NOT NULL )";
 			
-			echo "<pre> $sqlQuery </pre>";
+			//echo "<pre> $sqlQuery </pre>";
 			
 			//VERIFICA CREAZIONE TABELLA
 			if($resultQ = mysqli_query($connection, $sqlQuery)) 
-				echo "<p>Tabella Prodotti creata con successo!</p>\n";
+				echo "<h3>Tabella Prodotti creata con successo!</h3>\n";
 			else {
-				echo "<p>Creazione tabella Prodotti fallita</p>\n";
+				echo "<h3>Creazione tabella Prodotti fallita</h3>\n";
 				exit();
 			}		
 			
@@ -152,6 +154,20 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 					(postId, user, testo) 
 					VALUES 
 					(\"1\", \"simonemessi\", \"che bella giornata\")
+					";
+			
+			if($resultQ = mysqli_query($connection, $sql)) 
+				echo "<p> Post inserito correttamente!</p>\n";
+			
+			else {
+				echo "<p> Errore inserimento post </p>\n";
+				exit();
+			}
+			
+			$sql = "INSERT INTO $post_table_name
+					(postId, user, testo) 
+					VALUES 
+					(\"2\", \"xrushofblood\", \"oggi fa freddissimo!\")
 					";
 			
 			if($resultQ = mysqli_query($connection, $sql)) 
@@ -215,7 +231,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 			
 			$sql = "INSERT INTO $prodotti_table_name (nome, costo)
 					VALUES
-					(\"Obiettivo Tamron TA025E Univerale per Canon\" , \"1116.83\")";
+					(\"Obiettivo Tamron TA025E Universale per Canon\" , \"1116.83\")";
 			if($resultQ = mysqli_query($connection, $sql)) 
 				echo "<p> Prodotto inserito correttamente!</p>\n";
 			else {
