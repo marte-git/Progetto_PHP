@@ -2,6 +2,7 @@
 	echo '<?xml version="1.0" encoding="UTF-8"?>';
 	error_reporting(E_ALL &~E_NOTICE);
 	require_once("./style.php");
+	require_once("./connession.php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -16,17 +17,6 @@
 		<h1> Crea il tuo account Cesiogram </h1>
 		
 		<?php
-			$db_name = "CesioDB";
-			$user_table_name = "Users";
-			
-			//connessione al db
-			$connection = new mysqli("localhost", "cesio", "cesio", $db_name);
-			
-			//verifica connessione db
-			if(mysqli_connect_errno()){
-				printf("Errore di connessione al db: %s\n", mysqli_connect_error($connection));
-				exit();
-			}
 			if(isset($_POST['invio'])){
 				if($_POST['nome'] && $_POST['cognome'] && $_POST['userName'] && $_POST['password'] && $_POST['dataNascita'] && $_POST['email']){
 					$sql = "INSERT INTO $user_table_name(userName, password, nome, cognome, dataNascita, email, sesso, professione, bio) VALUES ('{$_POST['userName']}','{$_POST['password']}','{$_POST['nome']}','{$_POST['cognome']}','{$_POST['dataNascita']}','{$_POST['email']}','{$_POST['sesso']}','{$_POST['professione']}','{$_POST['bio']}')";

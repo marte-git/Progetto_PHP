@@ -16,33 +16,16 @@
 		<h1> Cesio DB </h1>
 		
 		<?php
-		//CREAZIONE DB
-			$db_name = "CesioDB";
+			$db_name = "lweb9";
 			$user_table_name = "Users";
 			$post_table_name = "Posts";
 			$prodotti_table_name = "Prodotti";
 			
-			//Connessione al database
-			$connection = new mysqli("localhost", "cesio", "cesio");
-		
-			//Controllo connessione
-			if(mysqli_connect_errno())
-				printf("<h3>Errore di connessione al db: %s</h3>\n", mysqli_connect_error());
-				
-			//Creazione del database
-			$queryCreazioneDB = "CREATE DATABASE $db_name";
-			if($resultQ = mysqli_query($connection, $queryCreazioneDB)){
-				printf("<h3>Database creato con successo!</h3>\n");
-			}else{
-				printf("<h3>Errore durante la creazione del database!</h3>\n");
-			}
 			
-			//Chiusura connessione
-			$connection->close();
 		
 		//CREAZIONE TABELLE DB
 			//Apertura connessione con il collegamento al db appena creato
-			$connection = new mysqli("localhost", "cesio", "cesio", $db_name);
+			$connection = new mysqli("localhost", "lweb9", "lweb9", $db_name);
 			//controllo connessione
 			if(mysqli_connect_errno()){
 				printf("<h3>Errore di connessione al db: %s</h3>\n", mysqli_connect_error());
@@ -124,7 +107,7 @@
 			$sql = "INSERT INTO $user_table_name
 					(userName, password, nome, cognome, dataNascita, email, sesso, professione, sommeSpese, bio)
 					VALUES
-					(\"simonemessi\", \"5678\", \"Simone\", \"Orelli\", \"1997-09-13\", \"simone@mail.it\", \"M\", \"Studente\", \"0\", \"Sono un ragazzo solare, e mi piacciono i Pokémon\")";
+					(\"simonemessi\", \"5678\", \"Simone\", \"Orelli\", \"1997-09-13\", \"simone@mail.it\", \"M\", \"Studente\", \"0\", \"Sono un ragazzo pensieroso, e mi piacciono i cani\")";
 			if($resultQ = mysqli_query($connection, $sql)){
 				printf("<p>User inserito correttamente</p>\n");
 			}else{
