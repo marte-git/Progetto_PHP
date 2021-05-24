@@ -1,197 +1,207 @@
 <?php
-$stileInterno="<style rel=\"stylesheet\" type=\"text/css\">\n
-	h3{\n
-		color: #0B2E41;\n
-		font-family: verdana;\n
-	}\n
+	$stileInterno = "<style type = \"text/css\">
 	
-	h2{
+	body {
+		background-image: url(\"sfondo.jpg\");
+		background-attachment: fixed;
+		text-align:center;
+	}
+	
+	h1 {
+		font-family: garamond;
+		font-size: 300%;
+		margin-top: 0px;
+		color: #0B2E41;
+	}
+	
+	h3 {
 		color: #0B2E41;
 		font-family: verdana;
 	}
 	
-	th{\n
-		color: #0B2E41;\n
-	}\n
+	h2 {
+		color: #0B2E41;
+		font-family: verdana;
+		
+	}
 	
-	h1{\n
-		font-family: garamond;\n
-		font-size: 300%;\n
-		margin-top: 0px;\n
-		color: #0B2E41;\n
-	}\n
+	th {
+		color:#0B2E41;
+	}
 	
-	em{\n
-		color: maroon;\n
-	}\n
+	.menu {
+			position: fixed;
+			font-size: 130%;
+			left: 5%;
+			top: 7%;
+	}
 	
-	body{\n
-		background-image: url(\"sfondo.jpg\");\n
-		text-align: center;
-		background-size: 1920px 5000px;
-	}\n
+	.menu a {
+		text-decoration: none;
+		color: dimgray;
+	}
 	
-	.menu{\n
-		position: fixed;\n
-		font-size: 130%;\n
-		left: 5%;\n
-		top: 7%;\n
-	}\n
+	.menu a:hover {
+		color: black;
+	}	
 	
-	.menu a{\n
-		text-decoration: none;\n
-		color: dimGray;\n
-	}\n
+	ul {
+	list-style-type: none;
+	font-family: verdana;
+	text-align: left;
+	}
 	
-	.menu a:hover{\n
-		color: black;\n
-	}\n
+	li {
+	padding: 10px;
+	}
 	
-	li{\n
-		padding: 10px;\n
-		font-family: Verdana\n
-	}\n
+	li img {
+		width: 20px;
+		height:20px;
+	}
+
 	
-	li img{\n
-		width: 20px;\n
-		height: 20px;\n
-	}\n
-	
-	ul{\n
-		list-style-type: none;\n
-		text-align: left;\n
-	}\n
-	
-	.post{\n
-		position: absolute;\n
-		left: 35%;\n
-		text-align: left;\n
+	.post {
+		text-align:left;
+		position: absolute;
+		left: 35%;
 		width: 30%;
-	}\n
+	}
+
 	
-	.ogniPost{\n
-		background-color: rgba(255, 255, 255, 0.8);\n
+	.ogniPost {
+		display:block;
+		padding-left:5%;
 		margin: 5%;
-		padding-left: 2%;
-		overflow:auto;
-		display: block;
+		overflow: auto;
+		background-color: rgba(255,255,255,0.8);
+		color: dimgray;
 		border-radius: 20px;
 		border-top: solid;
-		border-left: solid;
+		border-left:solid;
 		border-width: 2px;
-		border-color: dimGray;
-		color:dimGray;
-	}\n
-	
-	.spostato{\n
-		width: 330px;
-	}\n
-	
-	.elimina{
-		background: url(\"cancel.png\") no-repeat center;
-		background-size: 20px;
-		cursor: pointer;
-		border: none;
-		z-index: 98;
-		color: rgba(0,0,0,0);
+		border-color: dimgray;
+		font-size: 120%;
+		
 	}
 	
-	td strong{
-		font-size:120%;
-		color: darkslategray;
-	}
-	
-	hr{
-		width:70%;
-		float:left;
-		height: 1px;
-		border: 0;
-		background-color: teal;
-	}
-	
-	.destra{\n
-		position: fixed;\n
-		left: 75%;\n
-		top: 0;\n
-		text-align: right;\n
+	.destra{
 		width: 20%;
-	}\n
+		text-align: right;
+		position:fixed;
+		left: 75%;
+		top: 0;
+		
+	}
+	.spostato {
+		width: 330px;
+	}
 	
-	::selection{
+	::selection {
 		color: yellow;
 	}
 	
-	textarea{
-		padding:10px;
-		font-family: garamond;
-		width:30%;
+	.elimina {
+		border: none;
+		cursor: pointer;
+		background:url(\"cancel.png\") no-repeat;
+		background-size: 20px 20px;
+		color: rgba(0,0,0,0);
+	}
+	
+	textarea {
+		width: 30%;
+		padding: 10px;
 		padding-bottom: 30px;
-		font-size:120%;
+		font-family: garamond;
 		border:none;
 	}
 	
-	textarea:focus{
+	textarea:focus {
 		outline:none;
 	}
 	
-	.pubblica input, .bottone{
-		border-radius: 20px;\n
-		height: 35px;\n
-		border-style: none;\n
-		width: 200px;\n
-		padding-left: 10px;\n
-		background-color:white;
-		text-align:center;
-		margin: 10px;
+	hr {
+		height: 1px;
+		border: 0;
+		background-color: teal;
+		width: 70%;
+		float: left;
 	}
 	
-	.pubblica input:hover, .bottone:hover{
-		background-color:gainsboro;
-	}
-	
-	.carrello{
-		margin-left: 32%;
-		text-align: left;
-		margin-top:5%;
-		margin-bottom: 3%;
+	td strong {
 		font-size: 120%;
+		color: darkslategray;
 	}
 	
-	.prodotti{
+	.pubblica input, .bottone {
+		
 		margin: 10px;
-		background-color: rgba(255, 255, 255, 0.8);\n
+		border-radius: 20px;\n
+		height : 35px;\n
+		width: 200px;\n
+		border-style: none;\n
+		padding-left: 10px;	
+		background-color: white;
+		
+	}
+	
+	.pubblica input:hover , .bottone:hover{
+		background-color: gainsboro;
+	}
+		
+	
+	.carrello {
+		font-size: 120%;
+		margin-left:32%;
+		text-align: left;
+		margin-top: 5%;
+		margin-bottom: 3%;	
+	}
+	
+	.prodotti {
+		margin: 10px;
+		background-color: rgba(255,255,255,0.8);
 		border-radius: 10px;
-		border-top: solid;
-		border-left: solid;
-		border-width: 2px;
-		border-color: dimGray;
-		color:dimgray;
 		width: 80%;
+		border-top: solid;
+		border-left:solid;
+		border-width: 2px;
+		border-color: dimgray;
+		color: dimgray;
 		font-family: garamond;
 	}
 	
-	.prezzi{
+	.prezzi {
 		float: right;
 		margin-right: 2%;
 		color: darkslategray;
 		font-weight: bold;
 	}
 	
-	.lista{
+	em {\n
+		color: maroon;\n
+	}\n
+	
+	.lista {
 		margin: 10px;
-		background-color: rgba(173, 216, 230, 1);\n
+		background-color: rgba(173,216,230,1);
 		border-radius: 10px;
+		width: 80%;
 		border-top: solid;
-		border-left: solid;
+		border-left:solid;
 		border-width: 2px;
-		border-color: dimGray;
-		color:royalblue;
-		width: 50%;
+		border-color: dimgray;
+		color: white;
 		font-family: garamond;
+		width: 50%;
 	}
 	
-	.centro{
+	.centro {
 		margin-top: 10%;
 	}
-</style>"
+	
+	
+	</style>
+	";
 ?>
