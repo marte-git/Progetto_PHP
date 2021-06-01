@@ -8,7 +8,9 @@ Simone Orelli 1749732
 PHP Rappresentativo 
 
 Indirizzo del repository su Github: https://github.com/Cesio-organizzazione-di/Progetto_PHP
+
 Indirizzo server Simone Orelli: http://lweb.dis.uniroma1.it/~lweb9/simone.orelli.PHP2/
+
 Indirizzo server Angelica Della Vecchia: http://lweb.dis.uniroma1.it/~lweb18/angelica.dellavecchia.PHP2/
 
 Il presente esercizio è una variante dell'esercizio carrello.della.spesa3.php, sulla slide 6, quindi è del tipo PHP-MySQL.
