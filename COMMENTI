@@ -1,0 +1,7 @@
+va bene;
+a livello di commento su questo esercizio, potreste tenr conto che dare dimensioni fisse alle aree in cui poi appare testo non controllato puo' essere un problema. Ad esempio la resa di un commento utente viene fatta prolungando la riga su tutta la sua lunghezza, senza wrap, il che rende difficle la lettura. Provate a scrivere una riga molto lunga.
+Forse potreste provare a dare dimensioni meno limitate alle finestre di resa grafica dei commenti, che sono belle ma un piccole. E poi aggiungete il wrap, per far si' che la riga non sia mai troppo lunga. Il wrap dovrebbe essere tarato sulla larghezza della finestra.
+Anche i prodotti hanno un problema simile, e il prezzo (o forse anche il nome del prodotto, rischiano di debordare.
+
+Va bene anche cosi' come esercizio, ma magari perdeteci un paio do'ore per ssietmare questi problemi.
+Vi lascio la possibilita' di risottomettere su bridge.
